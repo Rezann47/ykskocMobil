@@ -22,7 +22,8 @@ export const AVATARS = [
   { id: 15, emoji: '🌸', name: 'Sakura', bg: '#FDF2F8', color: '#EC4899' },
   { id: 16, emoji: '🌊', name: 'Dalga', bg: '#F0FDFA', color: '#0D9488' },
   { id: 17, emoji: '🍃', name: 'Yaprak', bg: '#F0FDF4', color: '#16A34A' },
-  { id: 18, emoji: '🌙', name: 'Hilal', bg: '#1E1E2E', color: '#FCD34D' },
+  { id: 18, emoji: '💎', name: 'Elmas', bg: '#E0F7FA', color: '#00ACC1' },
+
 
   // --- PREMIUM (KOYU TEMA & LÜKS) ---
   { id: 19, emoji: '🐆', name: 'Leopar', bg: '#FEF3C7', color: '#B45309' },
@@ -30,7 +31,8 @@ export const AVATARS = [
   { id: 21, emoji: '🐺', name: 'Kurt', bg: '#334155', color: '#F1F5F9' }, // Gece Grisi
   { id: 22, emoji: '🐉', name: 'Ejderha', bg: '#450A0A', color: '#F87171' }, // Koyu Kırmızı
   { id: 23, emoji: '🪐', name: 'Satürn', bg: '#0F172A', color: '#A855F7' }, // Galaksi
-  { id: 24, emoji: '💎', name: 'Elmas', bg: '#E0F7FA', color: '#00ACC1' },
+  { id: 24, emoji: '🌙', name: 'Hilal', bg: '#1E1E2E', color: '#FCD34D' },
+
   { id: 25, emoji: '🚀', name: 'Roket', bg: '#1E293B', color: '#38BDF8' },
   { id: 26, emoji: '🎭', name: 'Maske', bg: '#2E1065', color: '#C084FC' },
   { id: 27, emoji: '🔥', name: 'Alev', bg: '#450A0A', color: '#FB923C' },

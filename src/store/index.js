@@ -15,6 +15,7 @@ export const useStore = create((set, get) => ({
     AsyncStorage.setItem('accessToken', accessToken);
     AsyncStorage.setItem('refreshToken', refreshToken);
     AsyncStorage.setItem('user', JSON.stringify(user));
+
   },
 
   // Avatar backend'e kaydedilince local user objesini de güncelle

@@ -42,12 +42,7 @@ export default function HomeScreen({ navigation }) {
 
   if (loading) return <Loading />;
 
-  const greeting = () => {
-    const h = new Date().getHours();
-    if (h < 12) return 'Günaydın';
-    if (h < 18) return 'İyi günler';
-    return 'İyi akşamlar';
-  };
+
 
   return (
     <ScrollView
@@ -59,8 +54,9 @@ export default function HomeScreen({ navigation }) {
       <LinearGradient colors={[colors.primary, colors.primary + 'CC']}
         style={styles.header}>
         <View style={styles.headerTop}>
-          <View style={{ width: 60, height: 60, borderRadius: 14, overflow: 'hidden', marginRight: 6 }}>
-            <UserAvatar avatarId={user?.avatar_id} size={60} />
+          <View style={{ width: 90, height: 90, borderRadius: 1, overflow: 'hidden', marginRight: 6 }}>
+
+            <UserAvatar avatarId={user?.avatar_id} size={90} />
 
           </View>
 

@@ -1,20 +1,30 @@
 {
-    "cli": {
-        "version": ">= 5.9.0"
+  "cli": {
+    "version": ">= 5.9.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "prebuildCommand": "npx expo prebuild --clean"
     },
-    "build": {
-        "development": {
-            "developmentClient": true,
-            "distribution": "internal"
-        },
-        "preview": {
-            "distribution": "internal"
-        },
-        "production": {
-            "autoIncrement": true
-        }
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "prebuildCommand": "npx expo prebuild --clean"
     },
-    "submit": {
-        "production": {}
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "prebuildCommand": "npx expo prebuild --clean"
     }
+  },
+  "submit": {
+    "production": {}
+  }
 }

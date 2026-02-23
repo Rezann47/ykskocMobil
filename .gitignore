@@ -1,3 +1,24 @@
-.expo
-package-lock.json
-node_modules
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+dist/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# macOS
+.DS_Store
+
+# env
+.env
+
+# build
+*.apk
+*.aab
+
+# ❗ android ve ios BURADA OLMAMALI

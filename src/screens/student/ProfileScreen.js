@@ -31,6 +31,7 @@ export default function ProfileScreen() {
       // Local user objesini güncelle
       updateUser(updated);
     } catch (e) {
+      console.log(e.message)
       Alert.alert('Hata', 'Avatar kaydedilemedi: ' + e.message);
     }
     setSavingAvatar(false);
@@ -78,7 +79,7 @@ export default function ProfileScreen() {
           disabled={savingAvatar}
         >
           <View style={styles.avatarWrap}>
-            <UserAvatar avatarId={user?.avatar_id} size={80} />
+            <UserAvatar avatarId={user?.avatar_id} size={100} />
             <View style={[styles.editBadge, { backgroundColor: colors.primary, borderColor: '#fff' }]}>
               <Ionicons name={savingAvatar ? 'sync' : 'pencil'} size={11} color="#fff" />
             </View>
@@ -140,7 +141,7 @@ export default function ProfileScreen() {
           </View>
           <Text style={[styles.menuLabel, { color: colors.text }]}>Avatar</Text>
           <View style={{ marginRight: 8 }}>
-            <UserAvatar avatarId={user?.avatar_id} size={28} />
+            <UserAvatar avatarId={user?.avatar_id} size={48} />
           </View>
           <Ionicons name="chevron-forward" size={16} color={colors.textMuted} />
         </TouchableOpacity>

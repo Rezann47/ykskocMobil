@@ -21,11 +21,12 @@ export default function AddStudyPlanScreen({ route, navigation }) {
   const [saving, setSaving] = useState(false);
 
   // Veri State
-  const [subjects, setSubjects] = useState([]);
+  const [allSubjects, setAllSubjects] = useState([]); // API'den gelen ham veri
   const [topicsBySubject, setTopicsBySubject] = useState({});
+  const [examType, setExamType] = useState('TYT'); // Seçili sınav tipi
 
   // UI State (Modal Kontrolü)
-  const [activePicker, setActivePicker] = useState(null); // { type: 'subject' } veya { type: 'topic', index: number }
+  const [activePicker, setActivePicker] = useState(null);
 
   useEffect(() => {
     loadSubjects();
@@ -34,7 +35,7 @@ export default function AddStudyPlanScreen({ route, navigation }) {
   const loadSubjects = async () => {
     try {
       const data = await subjectApi.list();
-      setSubjects(data || []);
+      setAllSubjects(data || []);
     } catch (e) {
       console.error("Dersler yüklenemedi", e);
     }
@@ -55,7 +56,7 @@ export default function AddStudyPlanScreen({ route, navigation }) {
       ...prev,
       {
         subject_id: subject.id,
-        subject_name: subject.name,
+        subject_name: `[${subject.exam_type}] ${subject.name}`,
         topic_id: null,
         topic_name: null,
         duration_minutes: 45,
@@ -116,21 +117,19 @@ export default function AddStudyPlanScreen({ route, navigation }) {
     weekday: 'long', day: 'numeric', month: 'long',
   });
 
-  // Modal İçeriği Render Fonksiyonu
+  // Filtrelenmiş ders listesi
+  const filteredSubjects = allSubjects.filter(s => s.exam_type === examType);
+
   const renderPickerContent = () => {
     if (!activePicker) return null;
 
     const isSubject = activePicker.type === 'subject';
-    const data = isSubject ? subjects : (topicsBySubject[items[activePicker.index]?.subject_id] || []);
+    const data = isSubject ? filteredSubjects : (topicsBySubject[items[activePicker.index]?.subject_id] || []);
 
     return (
       <Modal visible={activePicker !== null} transparent animationType="slide">
         <View style={styles.modalOverlay}>
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            onPress={() => setActivePicker(null)}
-            activeOpacity={1}
-          />
+          <TouchableOpacity style={{ flex: 1 }} onPress={() => setActivePicker(null)} />
           <View style={[styles.modalContent, { backgroundColor: colors.card }]}>
             <View style={styles.modalHeader}>
               <Text style={[styles.modalTitle, { color: colors.text }]}>
@@ -140,6 +139,25 @@ export default function AddStudyPlanScreen({ route, navigation }) {
                 <Ionicons name="close-circle" size={28} color={colors.textMuted} />
               </TouchableOpacity>
             </View>
+
+            {isSubject && (
+              <View style={styles.tabContainer}>
+                {['TYT', 'AYT'].map((t) => (
+                  <TouchableOpacity
+                    key={t}
+                    onPress={() => setExamType(t)}
+                    style={[
+                      styles.tabButton,
+                      examType === t && { backgroundColor: colors.primary }
+                    ]}
+                  >
+                    <Text style={[styles.tabText, { color: examType === t ? '#fff' : colors.textSecondary }]}>
+                      {t}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
 
             <FlatList
               data={data}
@@ -172,13 +190,11 @@ export default function AddStudyPlanScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-        {/* Tarih Bölümü */}
         <View style={[styles.dateHeader, { backgroundColor: colors.primary }]}>
           <Ionicons name="calendar" size={20} color="#fff" />
           <Text style={styles.dateText}>{displayDate}</Text>
         </View>
 
-        {/* Plan Detayları */}
         <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <Text style={[styles.label, { color: colors.textSecondary }]}>Plan Başlığı</Text>
           <TextInput
@@ -201,7 +217,6 @@ export default function AddStudyPlanScreen({ route, navigation }) {
 
         <Text style={[styles.sectionTitle, { color: colors.text }]}>📚 Çalışılacak Dersler</Text>
 
-        {/* Seçilen Ders Kartları */}
         {items.map((item, index) => (
           <View key={index} style={[styles.itemCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={styles.itemHeader}>
@@ -246,7 +261,6 @@ export default function AddStudyPlanScreen({ route, navigation }) {
           </View>
         ))}
 
-        {/* Ders Ekleme Butonu */}
         <TouchableOpacity
           style={[styles.addButton, { borderColor: colors.primary }]}
           onPress={() => setActivePicker({ type: 'subject' })}
@@ -258,7 +272,6 @@ export default function AddStudyPlanScreen({ route, navigation }) {
         <View style={{ height: 100 }} />
       </ScrollView>
 
-      {/* Kaydet Butonu (Sabit Alt Kısım) */}
       <View style={[styles.footer, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
         <Button title="Planı Tamamla ve Kaydet" onPress={handleSave} loading={saving} />
       </View>
@@ -279,8 +292,6 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, fontWeight: '600', marginBottom: 6 },
   input: { borderWidth: 1, borderRadius: 10, padding: 12, fontSize: 15 },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 12 },
-
-  // Ders Kartları
   itemCard: { borderRadius: 16, padding: 16, borderWidth: 1, marginBottom: 12, elevation: 1 },
   itemHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
   subjectTag: { paddingHorizontal: 12, paddingVertical: 4, borderRadius: 8 },
@@ -294,15 +305,11 @@ const styles = StyleSheet.create({
   durationChips: { flexDirection: 'row', gap: 6 },
   chip: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 15, minWidth: 40, alignItems: 'center' },
   chipText: { fontSize: 12, fontWeight: '600' },
-
-  // Ekleme Butonu
   addButton: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     padding: 15, borderWidth: 2, borderStyle: 'dashed', borderRadius: 15, gap: 8, marginTop: 10
   },
   addButtonText: { fontSize: 16, fontWeight: 'bold' },
-
-  // Modal Stilleri
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-end' },
   modalContent: {
     borderTopLeftRadius: 25, borderTopRightRadius: 25,
@@ -315,7 +322,23 @@ const styles = StyleSheet.create({
     alignItems: 'center', paddingVertical: 16, borderBottomWidth: 1
   },
   pickerItemText: { fontSize: 16, fontWeight: '500' },
-
-  // Sabit Alt Buton
-  footer: { padding: 16, borderTopWidth: 1 }
+  footer: { padding: 16, borderTopWidth: 1 },
+  // Tab Stilleri
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 15
+  },
+  tabButton: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    borderRadius: 10
+  },
+  tabText: {
+    fontWeight: 'bold',
+    fontSize: 14
+  }
 });

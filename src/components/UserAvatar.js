@@ -1,29 +1,35 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { getAvatar } from '../utils/avatars';
+import AvatarFrame from './AvatarFrame';
 
 /**
  * Kullanım:
- * <UserAvatar avatarId={user.avatar_id} size={60} />
- *
- * avatarId backend'den gelir (user.avatar_id).
- * 1-20 arası geçerli değer, dışındaysa 1 (kedi) gösterilir.
+ * <UserAvatar avatarId={user.avatar_id} size={64} />
  */
-export default function UserAvatar({ avatarId, size = 48 }) {
+export default function UserAvatar({ avatarId, size = 64 }) {
   const avatar = getAvatar(avatarId || 1);
-  const borderRadius = size * 0.28;
-  const fontSize = size * 0.52;
+  const innerSize = size * 0.70;
+  const offset = (size - innerSize) / 2;
 
   return (
-    <View style={[
-      styles.wrap,
-      { width: size, height: size, borderRadius, backgroundColor: avatar.bg },
-    ]}>
-      <Text style={{ fontSize }}>{avatar.emoji}</Text>
+    <View style={{ width: size, height: size }}>
+      {/* Desenli çerçeve */}
+      <View style={{ position: 'absolute', inset: 0 }}>
+        <AvatarFrame avatarId={avatar.id} color={avatar.color} size={size} />
+      </View>
+      {/* Emoji */}
+      <View style={{
+        position: 'absolute',
+        top: offset, left: offset,
+        width: innerSize, height: innerSize,
+        borderRadius: innerSize / 2,
+        backgroundColor: avatar.bg,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <Text style={{ fontSize: innerSize * 0.52 }}>{avatar.emoji}</Text>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  wrap: { alignItems: 'center', justifyContent: 'center' },
-});

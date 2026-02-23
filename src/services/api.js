@@ -1,6 +1,7 @@
+import { Platform } from 'react-native';
 import { useStore } from '../store';
 
-const BASE_URL = 'http://localhost:8080/api/v1'; // production'da değiştir
+const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:8080/api/v1' : 'http://10.0.2.2:8080/api/v1'; // Emülatör için
 
 class ApiClient {
   async request(endpoint, options = {}) {
@@ -111,3 +112,12 @@ export const studyPlanApi = {
   uncompleteItem: (planId, itemId) => api.patch(`/study-plans/${planId}/items/${itemId}/uncomplete`, {}),
   createForStudent: (studentId, data) => api.post(`/instructor/students/${studentId}/study-plans`, data),
 };
+export const messageApi = {
+  send: (data) => api.post('/messages', data),
+  listConversations: () => api.get('/messages/conversations'),
+  getConversation: (peerId, page = 1) =>
+    api.get(`/messages/conversations/${peerId}?page=${page}&limit=30`),
+  markRead: (peerId) => api.post(`/messages/conversations/${peerId}/read`),
+  unreadCount: () => api.get('/messages/unread'),
+};
+

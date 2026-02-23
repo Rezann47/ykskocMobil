@@ -31,6 +31,8 @@ import StudentDetailScreen from '../screens/instructor/StudentDetailScreen';
 import useActivityPing from '../hooks/useActivityPing'; // ← IMPORT EKLE
 
 
+import ConversationsScreen from '../screens/messages/ConversationsScreen';
+import ChatScreen from '../screens/messages/ChatScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -54,19 +56,30 @@ function StudentTabs() {
             "Ana Sayfa": focused ? 'home' : 'home-outline',
             "Pomodoro": focused ? 'timer' : 'timer-outline',
             "Konular": focused ? 'book' : 'book-outline',
-            "Denemeler": focused ? 'document-text' : 'document-text-outline',
-            "Profil": focused ? 'person' : 'person-outline', // 🔥 EKLE
+
+            "Profil": focused ? 'person' : 'person-outline',
+            "Programım": focused ? 'calendar' : 'calendar-outline',
 
           }
           return <Ionicons name={icons[route.name] || 'ellipse'} size={size} color={color} />;
         },
       })}
     >
+
+
       <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
-      <Tab.Screen name="Pomodoro" component={PomodoroScreen} />
-      <Tab.Screen name="Konular" component={SubjectsScreen} />
-      <Tab.Screen name="Plan" component={StudyPlanScreen} />
-      <Tab.Screen name="Denemeler" component={ExamsScreen} />
+      <Tab.Screen name="Programım" component={StudyPlanScreen} />
+
+      <Tab.Screen
+        name="Mesajlar"
+        component={ConversationsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbubble-ellipses-outline" size={size} color={color} />
+          ),
+          // Okunmamış badge göstermek istersen UnreadBadge eklenebilir
+        }}
+      />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -96,7 +109,18 @@ function InstructorTabs() {
         },
       })}
     >
+
+
       <Tab.Screen name="Öğrencilerim" component={InstructorScreen} />
+      <Tab.Screen
+        name="Mesajlar"
+        component={ConversationsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbubble-ellipses-outline" size={size} color={color} />
+          ),
+        }}
+      />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -125,6 +149,14 @@ function AppNavigator() {
             options={({ route }) => ({ title: route.params?.student?.name || 'Öğrenci Detayı' })}
           />
           <Stack.Screen name="AddStudyPlan" component={AddStudyPlanScreen} options={{ title: 'Plan Ekle' }} />
+          <Stack.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={({ route }) => ({
+              title: route.params?.peer?.name || 'Mesaj',
+              headerBackTitle: 'Geri',
+            })}
+          />
         </>
       ) : (
         <>
@@ -134,9 +166,31 @@ function AppNavigator() {
             component={TopicsScreen}
             options={({ route }) => ({ title: route.params?.subject?.name || 'Konular' })}
           />
-          <Stack.Screen name="Subjects" component={SubjectsScreen} options={{ title: 'Dersler' }} />
-          <Stack.Screen name="Exams" component={ExamsScreen} options={{ title: 'Denemeler' }} />
-          <Stack.Screen name="AddStudyPlan" component={AddStudyPlanScreen} options={{ title: 'Plan Ekle' }} />
+          <Stack.Screen name="Subjects" component={SubjectsScreen} options={{
+            headerBackTitle: 'Geri',
+            title: 'Dersler'
+          }} />
+          <Stack.Screen name="Exams" component={ExamsScreen} options={{
+            title: 'Denemeler', headerBackTitle: 'Geri',
+          }} />
+          <Stack.Screen name="AddStudyPlan" component={AddStudyPlanScreen} options={{
+            title: 'Plan Ekle', headerBackTitle: 'Geri',
+          }} />
+          <Stack.Screen name="Pomodoro" component={PomodoroScreen} options={{
+            title: 'Pomodoro', headerBackTitle: 'Geri',
+          }} />
+
+
+
+
+          <Stack.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={({ route }) => ({
+              title: route.params?.peer?.name || 'Mesaj',
+              headerBackTitle: 'Geri',
+            })}
+          />
         </>
       )}
     </Stack.Navigator>

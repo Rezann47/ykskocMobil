@@ -88,7 +88,7 @@ export default function ExamsScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       {/* Tab */}
-      <View style={[styles.tabBar, { paddingTop: '10%', backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+      <View style={[styles.tabBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
         {['TYT', 'AYT'].map((t) => (
           <TouchableOpacity
             key={t}

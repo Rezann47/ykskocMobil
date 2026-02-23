@@ -20,6 +20,7 @@ export default function SubjectsScreen({ navigation }) {
     setLoading(true);
     try {
       const data = await subjectApi.list(tab);
+
       setSubjects(data || []);
 
       const progMap = {};
@@ -70,7 +71,7 @@ export default function SubjectsScreen({ navigation }) {
 
       {/* Tab */}
 
-      <View style={[styles.tabBar, { paddingTop: '10%', backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+      <View style={[styles.tabBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
         {['TYT', 'AYT'].map((t) => (
           <TouchableOpacity
             key={t}
@@ -84,18 +85,20 @@ export default function SubjectsScreen({ navigation }) {
         ))}
       </View>
 
-      {loading ? <Loading /> : subjects.length === 0 ? (
-        <Empty icon="📚" title="Ders bulunamadı" />
-      ) : (
-        <FlatList
-          data={subjects}
-          keyExtractor={(i) => i.id}
-          renderItem={renderSubject}
-          contentContainerStyle={styles.list}
-          ListFooterComponent={<AdBanner style={{ marginTop: 8 }} />}
-        />
-      )}
-    </View>
+      {
+        loading ? <Loading /> : subjects.length === 0 ? (
+          <Empty icon="📚" title="Ders bulunamadı" />
+        ) : (
+          <FlatList
+            data={subjects}
+            keyExtractor={(i) => i.id}
+            renderItem={renderSubject}
+            contentContainerStyle={styles.list}
+            ListFooterComponent={<AdBanner style={{ marginTop: 8 }} />}
+          />
+        )
+      }
+    </View >
   );
 }
 

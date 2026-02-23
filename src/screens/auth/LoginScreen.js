@@ -26,7 +26,7 @@ export default function LoginScreen({ navigation }) {
     setError('');
     try {
       const data = await authApi.login(form);
-      console.log(data)
+      console.log("deneme", data)
       setAuth(data.user, data.token.access_token, data.token.refresh_token);
     } catch (e) {
       console.log(e.message)
@@ -59,7 +59,7 @@ export default function LoginScreen({ navigation }) {
         {/* Logo */}
         <LinearGradient colors={['#6C63FF', '#9C88FF']} style={styles.logo}>
           <Text style={styles.logoText}>YKS</Text>
-          <Text style={styles.logoSub}>KOÇUM</Text>
+          <Text style={styles.logoSub}>ROTA</Text>
         </LinearGradient>
 
 
@@ -104,7 +104,7 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 24, paddingTop: 60 },
+  container: { flexGrow: 1, padding: 24, paddingTop: 80 },
   logo: {
     width: 90, height: 90, borderRadius: 24,
     alignSelf: 'center', alignItems: 'center', justifyContent: 'center',

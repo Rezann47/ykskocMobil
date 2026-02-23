@@ -43,6 +43,7 @@ export default function StudyPlanScreen({ navigation }) {
     setLoading(true);
     try {
       const data = await studyPlanApi.listByDate(formatDate(date));
+      console.log("plan", data[0])
       setPlans(data || []);
     } catch (e) {
       console.log(e.message);
@@ -287,7 +288,7 @@ export default function StudyPlanScreen({ navigation }) {
                       styles.itemSubject,
                       { color: colors.text, textDecorationLine: item.is_completed ? 'line-through' : 'none' },
                     ]}>
-                      {item.subject_name}
+                      {item.exam_type} {item.subject_name}
                     </Text>
                     {item.topic_name && (
                       <Text style={[styles.itemTopic, { color: colors.textMuted }]}>
