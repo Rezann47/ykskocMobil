@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "YKS ROTA",
+    "slug": "comkayayksrota",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6C63FF"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.kaya.yksrota"
+    },
+    "android": {
+      "package": "com.kaya.yksrota",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#6C63FF"
+      }
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX",
+          "iosAppId": "ca-app-pub-9304319368230869~8745400425"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c0e85c60-fb34-47e2-abe1-c6761a048e98"
+      }
+    },
+    "owner": "kaya_47"
+  }
+}
