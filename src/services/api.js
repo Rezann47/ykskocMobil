@@ -100,6 +100,9 @@ export const instructorApi = {
   studentExams: (id, type) => api.get(`/instructor/students/${id}/exam-results?exam_type=${type}`),
   studentPlans: (id, date) => api.get(`/instructor/students/${id}/study-plans?date=${date}`),
   createPlanForStudent: (id, data) => api.post(`/instructor/students/${id}/study-plans`, data),
+
+  // Öğrencinin koçlarını listele (öğrenci rolü kullanır)
+  listMyInstructors: () => api.get('/students/my-instructors'),
 };
 
 // ─── Study Plans ─────────────────────────────────────────
