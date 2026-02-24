@@ -79,7 +79,7 @@ export default function InstructorScreen({ navigation }) {
   const sorted = [...students].sort((a, b) => (a.is_online === b.is_online ? 0 : a.is_online ? -1 : 1));
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    <View style={{ flex: 1, paddingTop: '15%', backgroundColor: colors.background }}>
       <FlatList
         data={sorted}
         keyExtractor={(i) => i.id}

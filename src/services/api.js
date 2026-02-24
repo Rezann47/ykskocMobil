@@ -1,8 +1,8 @@
 import { Platform } from 'react-native';
 import { useStore } from '../store';
 
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:8080/api/v1' : 'http://10.0.2.2:8080/api/v1'; // Emülatör için
-
+// const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:8080/api/v1' : 'http://10.0.2.2:8080/api/v1'; // Emülatör için
+const BASE_URL = 'https://api-6o23.onrender.com/api/v1'; // Gerçek sunucu
 class ApiClient {
   async request(endpoint, options = {}) {
     const { accessToken, refreshToken, updateToken, logout } = useStore.getState();
@@ -12,7 +12,7 @@ class ApiClient {
       ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
       ...options.headers,
     };
-
+    console.log(BASE_URL + endpoint, options);
     let res = await fetch(`${BASE_URL}${endpoint}`, { ...options, headers });
 
     // Token süresi dolmuşsa refresh dene

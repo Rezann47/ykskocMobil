@@ -29,6 +29,8 @@ import StudentDetailScreen from '../screens/instructor/StudentDetailScreen';
 import ConversationsScreen from '../screens/messages/ConversationsScreen';
 import ChatScreen from '../screens/messages/ChatScreen';
 
+
+import useActivityPing from '../hooks/useActivityPing';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -77,10 +79,8 @@ function StudentTabs() {
       })}
     >
       <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
-      <Tab.Screen name="Pomodoro" component={PomodoroScreen} />
       <Tab.Screen name="Konular" component={SubjectsScreen} />
       <Tab.Screen name="Plan" component={StudyPlanScreen} />
-      <Tab.Screen name="Denemeler" component={ExamsScreen} />
       <Tab.Screen name="Mesajlar" component={ConversationsScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
@@ -143,6 +143,12 @@ function AppNavigator() {
             options={({ route }) => ({ title: route.params?.subject?.name || 'Konular' })}
           />
           <Stack.Screen name="AddStudyPlan" component={AddStudyPlanScreen} options={{ title: 'Plan Ekle' }} />
+          <Stack.Screen name="Pomodoro" component={PomodoroScreen} options={{ title: 'Pomodoro' }} />
+
+
+          <Stack.Screen name="Denemeler" component={ExamsScreen} options={{ title: 'Denemeler' }} />
+
+
         </>
       )}
 
@@ -175,6 +181,8 @@ function AuthNavigator() {
 export default function RootNavigation() {
   const { user, isDark } = useStore();
   const theme = isDark ? darkTheme : lightTheme;
+
+  useActivityPing();
 
   return (
     <NavigationContainer theme={theme}>

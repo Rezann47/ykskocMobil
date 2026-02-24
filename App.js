@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import mobileAds from 'react-native-google-mobile-ads';
 import { useStore } from './src/store';
 import RootNavigation from './src/navigation';
-
+import * as NavigationBar from 'expo-navigation-bar';
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -18,8 +18,14 @@ export default function App() {
       await Promise.all([
         loadAuth(),
         loadTheme(),
-        mobileAds().initialize(), // AdMob başlat
+        mobileAds().initialize(),
       ]);
+
+      // Android navigation bar gizle
+      await NavigationBar.setVisibilityAsync('hidden');
+      await NavigationBar.setBehaviorAsync('overlay-swipe');
+      // swipe yapınca geçici gözüksün
+
       setReady(true);
       SplashScreen.hideAsync();
     }
