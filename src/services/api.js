@@ -130,6 +130,8 @@ export const userApi = {
   activatePremium: () => api.post('/users/me/premium/activate'),
   ping: () => api.post('/users/me/ping', {}),
   saveFCMToken: (token) => api.post('/users/me/fcm-token', { fcm_token: token }),
+  verifyPurchase: (data) => api.post('/purchases/verify', data),
+
 };
 
 // ─── Subjects ────────────────────────────────────────────

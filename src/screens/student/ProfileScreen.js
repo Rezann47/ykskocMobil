@@ -114,6 +114,7 @@ export default function ProfileScreen() {
           onPress={toggleTheme}
         />
 
+
         {/* Renk Teması */}
 
 
@@ -160,7 +161,7 @@ export default function ProfileScreen() {
             icon="star-outline"
             label="Premium'a Geç"
             value="Reklamları kaldır"
-            onPress={() => Alert.alert('Premium', 'Yakında!')}
+            onPress={() => navigation.navigate('Premium')}  // ← bunu güncelle
           />
         )}
         <MenuItem

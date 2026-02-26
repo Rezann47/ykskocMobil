@@ -37,7 +37,7 @@ import ChatScreen from '../screens/messages/ChatScreen';
 import ThemePickerScreen from '../screens/tema/ThemePickerScreen';
 
 import useActivityPing from '../hooks/useActivityPing';
-
+import PremiumScreen from '../screens/premıum/PremiumScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -257,6 +257,8 @@ function AppNavigator() {
         options={({ route }) => ({ title: route.params?.peer?.name || 'Mesaj', headerBackTitle: 'Geri' })} />
       <Stack.Screen name="ThemePicker" component={ThemePickerScreen}
         options={{ title: 'Tema Seç', headerBackTitle: 'Geri' }} />
+      <Stack.Screen name="Premium" component={PremiumScreen}
+        options={{ title: 'Premium Ol', headerBackTitle: 'Geri' }} />
     </Stack.Navigator>
   );
 }
