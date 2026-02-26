@@ -1,64 +1,68 @@
-// hooks/useIAP.js
+// hooks/useIAP.js — react-native-iap v14 düzeltilmiş
 import { useState, useEffect, useCallback } from 'react';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import {
-  connectIAP, disconnectIAP,
-  fetchSubscription, buyPremium,
-  restorePurchases, setupPurchaseListeners,
-} from '../services/iap';
+  useIAP,
+  fetchProducts,
+  requestPurchase,
+  finishTransaction,
+  restorePurchases,
+  purchaseUpdatedListener,
+  purchaseErrorListener,
+} from 'react-native-iap';
 import { useStore } from '../store';
-import { userApi } from '../services/api';
+import { SUBSCRIPTION_ID } from '../services/iap';
 
-export default function useIAP() {
+export default function usePremium() {
   const { updateUser } = useStore();
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
-  const [connected, setConnected] = useState(false);
 
-  // ─── Bağlan ve ürünü getir ───────────────────────────
+  const { connected } = useIAP();
+
+  // ─── Bağlanınca ürünü getir ───────────────────────────
   useEffect(() => {
-    let cleanup;
+    if (!connected) return;
 
-    async function init() {
-      setLoading(true);
-      const ok = await connectIAP();
-      setConnected(ok);
+    // v14: fetchProducts skus array alıyor
+    fetchProducts({ skus: [SUBSCRIPTION_ID] })
+      .then(products => {
+        console.log('Ürün sayısı:', products?.length);
+        console.log('Ürün detay:', JSON.stringify(products?.[0]));
+        setProduct(products?.[0] || null);
+      })
+      .catch(err => console.log('fetchProducts hatası:', err.message));
+  }, [connected]);
 
-      if (ok) {
-        const sub = await fetchSubscription();
-        setProduct(sub);
+  // ─── Purchase listener'ları kur ──────────────────────
+  useEffect(() => {
+    const successListener = purchaseUpdatedListener(async (purchase) => {
+      console.log('Purchase geldi:', purchase.productId);
+      if (!purchase.transactionReceipt) return;
 
-        // Purchase listener'ları kur
-        cleanup = setupPurchaseListeners({
-          onSuccess: async () => {
-            setPurchasing(false);
-            // Kullanıcı bilgisini güncelle
-            try {
-              const me = await userApi.getMe();
-              updateUser(me);
-            } catch { }
-            Alert.alert(
-              '🎉 Premium Aktif!',
-              'Tebrikler! Premium üyeliğin başarıyla aktifleşti.',
-            );
-          },
-          onError: (err) => {
-            setPurchasing(false);
-            Alert.alert('Hata', 'Satın alma tamamlanamadı. Lütfen tekrar dene.');
-          },
-        });
+      try {
+        await finishTransaction({ purchase, isConsumable: false });
+      } catch (err) {
+        console.log('finishTransaction:', err.message);
       }
 
-      setLoading(false);
-    }
+      setPurchasing(false);
+      updateUser({ is_premium: true });
+      Alert.alert('🎉 Premium Aktif!', 'Tebrikler! Premium üyeliğin aktifleşti.');
+    });
 
-    init();
+    const errorListener = purchaseErrorListener((err) => {
+      console.log('Purchase error:', err.code, err.message);
+      setPurchasing(false);
+      if (err.code !== 'E_USER_CANCELLED') {
+        Alert.alert('Hata', 'Satın alma tamamlanamadı.');
+      }
+    });
 
     return () => {
-      cleanup?.();
-      disconnectIAP();
+      successListener.remove();
+      errorListener.remove();
     };
   }, []);
 
@@ -67,34 +71,38 @@ export default function useIAP() {
     if (!connected || purchasing) return;
     setPurchasing(true);
     try {
-      await buyPremium();
-      // Sonuç listener'dan gelecek, burada bekleme
+      // v14: requestPurchase skus array ile çağrılıyor
+      await requestPurchase({
+        skus: [SUBSCRIPTION_ID],   // ← array!
+      });
     } catch (err) {
       setPurchasing(false);
-      Alert.alert('Hata', err.message || 'Satın alma başlatılamadı.');
+      if (err.code !== 'E_USER_CANCELLED') {
+        Alert.alert('Hata', err.message || 'Satın alma başlatılamadı.');
+      }
     }
   }, [connected, purchasing]);
 
-  // ─── Restore (App Store zorunlu kılar) ───────────────
+  // ─── Restore ────────────────────────────────────────
   const restore = useCallback(async () => {
     setRestoring(true);
     try {
-      const hasPremium = await restorePurchases();
+      const purchases = await restorePurchases();
+      const hasPremium = purchases?.some(p => p.productId === SUBSCRIPTION_ID);
       if (hasPremium) {
-        const me = await userApi.getMe();
-        updateUser(me);
+        updateUser({ is_premium: true });
         Alert.alert('✅ Geri Yüklendi', 'Premium üyeliğin geri yüklendi!');
       } else {
         Alert.alert('Bulunamadı', 'Aktif bir premium abonelik bulunamadı.');
       }
-    } catch {
-      Alert.alert('Hata', 'Geri yükleme başarısız. Lütfen tekrar dene.');
+    } catch (err) {
+      Alert.alert('Hata', 'Geri yükleme başarısız.');
     }
     setRestoring(false);
   }, []);
 
-  // ─── Fiyat formatla ──────────────────────────────────
-  const priceText = product?.localizedPrice || '₺80';
+  const priceText = product?.localizedPrice || '₺99';
+  const loading = !connected;
 
   return { product, priceText, loading, purchasing, restoring, purchase, restore };
 }

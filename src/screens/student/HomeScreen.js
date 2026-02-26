@@ -54,9 +54,9 @@ export default function HomeScreen({ navigation }) {
       <LinearGradient colors={[colors.primary, colors.primary + 'CC']}
         style={styles.header}>
         <View style={styles.headerTop}>
-          <View style={{ borderRadius: 1, overflow: 'hidden', marginRight: 6 }}>
+          <View style={{ width: 100, height: 100, justifyContent: 'center', alignItems: 'center', borderRadius: 1, overflow: 'hidden', marginRight: 6 }}>
 
-            <UserAvatar avatarId={user?.avatar_id} size={90} />
+            <UserAvatar avatarId={user?.avatar_id} size={80} />
 
           </View>
 
@@ -129,7 +129,7 @@ export default function HomeScreen({ navigation }) {
                 />
               </View>
             ))}
-            <TouchableOpacity onPress={() => navigation.navigate('Subjects')} style={styles.seeAll}>
+            <TouchableOpacity onPress={() => navigation.navigate('Konular')} style={styles.seeAll}>
               <Text style={[styles.seeAllText, { color: colors.primary }]}>Tümünü Gör →</Text>
             </TouchableOpacity>
           </Card>

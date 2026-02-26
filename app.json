@@ -30,7 +30,8 @@
           "androidAppId": "ca-app-pub-9304319368230869~9134630271",
           "iosAppId": "ca-app-pub-9304319368230869~8745400425"
         }
-      ]
+      ],
+      "./plugins/withIapFlavor"
     ],
     "extra": {
       "eas": {

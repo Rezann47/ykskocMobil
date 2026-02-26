@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		2455285028215632983B8F0D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43E1290270E0F42D64B08B0D /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		7E18BB8C41FA64726D62FF07 /* libPods-YKSROTA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AFE27026F954554D9919C1 /* libPods-YKSROTA.a */; };
-		93AF3A13273AC2860EF99E6F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8B4C1255A5EBA44E07AE1E /* ExpoModulesProvider.swift */; };
+		5F16CF9D3A01F6B78AD96557 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 28E21EF740ED83ED2C8C298D /* PrivacyInfo.xcprivacy */; };
+		B37DE8B393A9BEC25BBF4878 /* libPods-YKSROTA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44478F9729EB0519693191E6 /* libPods-YKSROTA.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		BEF24F3621368760BE3D21FD /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA485637AFFC3DCB87395F10 /* ExpoModulesProvider.swift */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -20,16 +20,16 @@
 		13B07F961A680F5B00A75B9A /* YKSROTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YKSROTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = YKSROTA/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = YKSROTA/Info.plist; sourceTree = "<group>"; };
-		20E192F64EA1E031649FC728 /* Pods-YKSROTA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKSROTA.debug.xcconfig"; path = "Target Support Files/Pods-YKSROTA/Pods-YKSROTA.debug.xcconfig"; sourceTree = "<group>"; };
-		43E1290270E0F42D64B08B0D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = YKSROTA/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		52AFE27026F954554D9919C1 /* libPods-YKSROTA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YKSROTA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D8B4C1255A5EBA44E07AE1E /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-YKSROTA/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		85DCBF8FD40FD224381AA29A /* Pods-YKSROTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKSROTA.release.xcconfig"; path = "Target Support Files/Pods-YKSROTA/Pods-YKSROTA.release.xcconfig"; sourceTree = "<group>"; };
+		28E21EF740ED83ED2C8C298D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = YKSROTA/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		4149C08FD25439AEA53D7EE6 /* Pods-YKSROTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKSROTA.release.xcconfig"; path = "Target Support Files/Pods-YKSROTA/Pods-YKSROTA.release.xcconfig"; sourceTree = "<group>"; };
+		430C7007AC5CF7B1DDC294A5 /* Pods-YKSROTA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKSROTA.debug.xcconfig"; path = "Target Support Files/Pods-YKSROTA/Pods-YKSROTA.debug.xcconfig"; sourceTree = "<group>"; };
+		44478F9729EB0519693191E6 /* libPods-YKSROTA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YKSROTA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = YKSROTA/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = YKSROTA/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* YKSROTA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YKSROTA-Bridging-Header.h"; path = "YKSROTA/YKSROTA-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA485637AFFC3DCB87395F10 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-YKSROTA/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E18BB8C41FA64726D62FF07 /* libPods-YKSROTA.a in Frameworks */,
+				B37DE8B393A9BEC25BBF4878 /* libPods-YKSROTA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,35 +53,26 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				43E1290270E0F42D64B08B0D /* PrivacyInfo.xcprivacy */,
+				28E21EF740ED83ED2C8C298D /* PrivacyInfo.xcprivacy */,
 			);
 			name = YKSROTA;
 			sourceTree = "<group>";
 		};
-		147C9BE94DDD98D0346B80CE /* YKSROTA */ = {
+		2CD589B954C6DA870C2713E3 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				6D8B4C1255A5EBA44E07AE1E /* ExpoModulesProvider.swift */,
+				FC3BBF8AC9F8F1AFEFD83506 /* YKSROTA */,
 			);
-			name = YKSROTA;
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				52AFE27026F954554D9919C1 /* libPods-YKSROTA.a */,
+				44478F9729EB0519693191E6 /* libPods-YKSROTA.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3A7E4A65393ED1B4FE239DA2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				20E192F64EA1E031649FC728 /* Pods-YKSROTA.debug.xcconfig */,
-				85DCBF8FD40FD224381AA29A /* Pods-YKSROTA.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -98,8 +89,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				3A7E4A65393ED1B4FE239DA2 /* Pods */,
-				8A4405F10F6CD7FC9C9FF215 /* ExpoModulesProviders */,
+				A240492DB2346B993716AED4 /* Pods */,
+				2CD589B954C6DA870C2713E3 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -114,12 +105,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8A4405F10F6CD7FC9C9FF215 /* ExpoModulesProviders */ = {
+		A240492DB2346B993716AED4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				147C9BE94DDD98D0346B80CE /* YKSROTA */,
+				430C7007AC5CF7B1DDC294A5 /* Pods-YKSROTA.debug.xcconfig */,
+				4149C08FD25439AEA53D7EE6 /* Pods-YKSROTA.release.xcconfig */,
 			);
-			name = ExpoModulesProviders;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -131,6 +124,14 @@
 			path = YKSROTA/Supporting;
 			sourceTree = "<group>";
 		};
+		FC3BBF8AC9F8F1AFEFD83506 /* YKSROTA */ = {
+			isa = PBXGroup;
+			children = (
+				FA485637AFFC3DCB87395F10 /* ExpoModulesProvider.swift */,
+			);
+			name = YKSROTA;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,14 +140,14 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "YKSROTA" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				92476AB7047070C6F4543EC2 /* [Expo] Configure project */,
+				3E5D91D182FAE515DA1B2E8D /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				752979BF8CEC6C177317C2E5 /* [CP] Embed Pods Frameworks */,
-				D60991B42025B29A03D02EB8 /* [CP-User] [RNGoogleMobileAds] Configuration */,
+				6423D08F2C163CD84E57693D /* [CP] Embed Pods Frameworks */,
+				FFD4F8F93C260E29EBE209A2 /* [CP-User] [RNGoogleMobileAds] Configuration */,
 			);
 			buildRules = (
 			);
@@ -196,7 +197,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				2455285028215632983B8F0D /* PrivacyInfo.xcprivacy in Resources */,
+				5F16CF9D3A01F6B78AD96557 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +243,31 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		752979BF8CEC6C177317C2E5 /* [CP] Embed Pods Frameworks */ = {
+		3E5D91D182FAE515DA1B2E8D /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env",
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/YKSROTA/YKSROTA.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-YKSROTA/expo-configure-project.sh",
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Pods/Target Support Files/Pods-YKSROTA/ExpoModulesProvider.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-YKSROTA/expo-configure-project.sh\"\n";
+		};
+		6423D08F2C163CD84E57693D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,31 +325,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YKSROTA/Pods-YKSROTA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		92476AB7047070C6F4543EC2 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/.xcode.env",
-				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/YKSROTA/YKSROTA.entitlements",
-				"$(SRCROOT)/Pods/Target Support Files/Pods-YKSROTA/expo-configure-project.sh",
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Pods/Target Support Files/Pods-YKSROTA/ExpoModulesProvider.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-YKSROTA/expo-configure-project.sh\"\n";
-		};
-		D60991B42025B29A03D02EB8 /* [CP-User] [RNGoogleMobileAds] Configuration */ = {
+		FFD4F8F93C260E29EBE209A2 /* [CP-User] [RNGoogleMobileAds] Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -345,7 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				93AF3A13273AC2860EF99E6F /* ExpoModulesProvider.swift in Sources */,
+				BEF24F3621368760BE3D21FD /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,13 +355,12 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20E192F64EA1E031649FC728 /* Pods-YKSROTA.debug.xcconfig */;
+			baseConfigurationReference = 430C7007AC5CF7B1DDC294A5 /* Pods-YKSROTA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = YKSROTA/YKSROTA.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W72BZZ44ZR;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -391,13 +391,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85DCBF8FD40FD224381AA29A /* Pods-YKSROTA.release.xcconfig */;
+			baseConfigurationReference = 4149C08FD25439AEA53D7EE6 /* Pods-YKSROTA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = YKSROTA/YKSROTA.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W72BZZ44ZR;
 				INFOPLIST_FILE = YKSROTA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

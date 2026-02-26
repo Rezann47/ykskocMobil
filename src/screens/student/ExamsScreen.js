@@ -159,7 +159,7 @@ export default function ExamsScreen() {
                 {Object.entries(exam.scores || {}).map(([key, val]) => (
                   <View key={key} style={[styles.scoreItem, { backgroundColor: colors.primaryLight }]}>
                     <Text style={[styles.scoreKey, { color: colors.primary }]}>{key}</Text>
-                    <Text style={[styles.scoreNet, { color: colors.text }]}>{val.net?.toFixed(1)}</Text>
+                    <Text style={[styles.scoreNet, { color: colors.text }]}>{val.net}</Text>
                   </View>
                 ))}
               </View>

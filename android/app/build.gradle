@@ -90,6 +90,7 @@ android {
     namespace 'com.kaya.yksrota'
     defaultConfig {
         applicationId 'com.kaya.yksrota'
+        missingDimensionStrategy "store", "play"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -153,7 +154,6 @@ android {
 }
 
 dependencies {
-    implementation "io.github.hyochan.openiap:openiap-google:1.3.28"
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 

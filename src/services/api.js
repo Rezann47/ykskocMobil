@@ -3,8 +3,8 @@ import { useStore } from '../store';
 import { Platform } from 'react-native';
 
 
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:8080/api/v1' : 'http://10.0.2.2:8080/api/v1'; // Emülatör için
-//const BASE_URL = 'https://api-6o23.onrender.com/api/v1'; // Gerçek sunucu
+// const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:8080/api/v1' : 'http://10.0.2.2:8080/api/v1'; // Emülatör için
+const BASE_URL = 'https://api-6o23.onrender.com/api/v1'; // Gerçek sunucu
 
 class ApiClient {
   constructor() {
@@ -32,6 +32,7 @@ class ApiClient {
 
     // ─── 401 → refresh dene ───────────────────────────────
     if (res.status === 401 && refreshToken) {
+      console.log("res", res.status)
 
 
       // Zaten refresh yapılıyorsa kuyruğa gir, bitince tekrar dene
@@ -76,6 +77,7 @@ class ApiClient {
           res = await fetch(`${BASE_URL}${endpoint}`, { ...options, headers });
 
         } else {
+          console.log("full cıkıs")
           // Refresh token da geçersiz — sadece O ZAMAN logout
           this._refreshQueue.forEach(({ reject }) => reject(new Error('SESSION_EXPIRED')));
           this._refreshQueue = [];

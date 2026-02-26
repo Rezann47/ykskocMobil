@@ -4,9 +4,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { View, ActivityIndicator } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import mobileAds from 'react-native-google-mobile-ads';
+import { initConnection, endConnection } from 'react-native-iap'; // ← YENİ
 import { useStore } from './src/store';
 import RootNavigation from './src/navigation';
 import * as NavigationBar from 'expo-navigation-bar';
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -19,17 +21,18 @@ export default function App() {
         loadAuth(),
         loadTheme(),
         mobileAds().initialize(),
+        initConnection().catch(e => console.log('IAP init:', e.message)), // ← YENİ
       ]);
 
-      // Android navigation bar gizle
       await NavigationBar.setVisibilityAsync('hidden');
       await NavigationBar.setBehaviorAsync('overlay-swipe');
-      // swipe yapınca geçici gözüksün
-
       setReady(true);
       SplashScreen.hideAsync();
     }
     init();
+
+    // Uygulama kapanınca bağlantıyı kes
+    return () => { endConnection().catch(() => { }); };
   }, []);
 
   if (!ready) {
