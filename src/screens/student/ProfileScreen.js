@@ -11,6 +11,7 @@ import { Card, useTheme } from '../../components/common';
 import { THEMES } from '../../theme';
 import UserAvatar from '../../components/UserAvatar';
 import AvatarPickerModal from '../../components/AvatarPickerModal';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ProfileScreen() {
   const colors = useTheme();
@@ -22,7 +23,7 @@ export default function ProfileScreen() {
   const [themeModal, setThemeModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [savingAvatar, setSavingAvatar] = useState(false);
-
+  const navigation = useNavigation();
   const handleSelectAvatar = async (avatarId) => {
     setSavingAvatar(true);
     try {
@@ -114,9 +115,11 @@ export default function ProfileScreen() {
         />
 
         {/* Renk Teması */}
+
+
         <TouchableOpacity
           style={[styles.menuItem, { borderBottomColor: colors.border }]}
-          onPress={() => setThemeModal(true)}
+          onPress={() => navigation.navigate('ThemePicker')} // Modal yerine navigasyon
           activeOpacity={0.7}
         >
           <View style={[styles.menuIcon, { backgroundColor: colors.primaryLight }]}>
@@ -125,7 +128,9 @@ export default function ProfileScreen() {
           <Text style={[styles.menuLabel, { color: colors.text }]}>Renk Teması</Text>
           <View style={styles.themePreview}>
             <Text>{currentTheme.emoji}</Text>
-            <Text style={[styles.themePreviewLabel, { color: colors.textMuted }]}>{currentTheme.label}</Text>
+            <Text style={[styles.themePreviewLabel, { color: colors.textMuted }]}>
+              {currentTheme.label}
+            </Text>
           </View>
           <Ionicons name="chevron-forward" size={16} color={colors.textMuted} />
         </TouchableOpacity>

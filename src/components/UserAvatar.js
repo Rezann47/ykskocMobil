@@ -3,30 +3,41 @@ import { View, Text } from 'react-native';
 import { getAvatar } from '../utils/avatars';
 import AvatarFrame from './AvatarFrame';
 
-/**
- * Kullanım:
- * <UserAvatar avatarId={user.avatar_id} size={64} />
- */
 export default function UserAvatar({ avatarId, size = 64 }) {
   const avatar = getAvatar(avatarId || 1);
-  const innerSize = size * 0.70;
-  const offset = (size - innerSize) / 2;
+  const id = avatar.id;
+
+  // Çerçeve kalınlığına göre iç daire oranı
+  const innerRatio = id >= 28 ? 0.58 : id >= 23 ? 0.60 : id >= 19 ? 0.62 : id >= 11 ? 0.65 : 0.68;
+  const innerSize = size * innerRatio;
+
+  // Elite/Cosmic dışa taşan glow için dış container büyütülür
+  const overflow = id >= 28 ? size * 0.14 : id >= 23 ? size * 0.07 : 0;
+  const totalSize = size + overflow * 2;
+
+  // Emoji dairesinin rengi — Elite/Cosmic arka plan kutusu görünmesin
+  // Tamamen şeffaf yapmak yerine çok düşük opacity kullan (emoji görünsün)
+  const bgColor = id >= 23 ? 'transparent' : avatar.bg;
 
   return (
-    <View style={{ width: size, height: size }}>
-      {/* Desenli çerçeve */}
-      <View style={{ position: 'absolute', inset: 0 }}>
-        <AvatarFrame avatarId={avatar.id} color={avatar.color} size={size} />
+    <View style={{ width: totalSize, height: totalSize }}>
+      {/* Çerçeve — overflow kadar içe yerleşir */}
+      <View style={{ position: 'absolute', top: overflow, left: overflow }}>
+        <AvatarFrame avatarId={id} color={avatar.color} size={size} />
       </View>
-      {/* Emoji */}
+
+      {/* Emoji dairesi — tam ortada */}
       <View style={{
         position: 'absolute',
-        top: offset, left: offset,
-        width: innerSize, height: innerSize,
+        top: overflow + (size - innerSize) / 2,
+        left: overflow + (size - innerSize) / 2,
+        width: innerSize,
+        height: innerSize,
         borderRadius: innerSize / 2,
-        backgroundColor: avatar.bg,
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'hidden',
       }}>
         <Text style={{ fontSize: innerSize * 0.52 }}>{avatar.emoji}</Text>
       </View>

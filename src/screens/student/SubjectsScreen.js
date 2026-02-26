@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View, Text, StyleSheet, FlatList,
   TouchableOpacity, SectionList,
+  Platform,
 } from 'react-native';
 import { subjectApi } from '../../services/api';
 import { Card, ProgressBar, useTheme, Loading, Empty, Badge } from '../../components/common';
@@ -71,7 +72,7 @@ export default function SubjectsScreen({ navigation }) {
 
       {/* Tab */}
 
-      <View style={[styles.tabBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+      <View style={[styles.tabBar, { paddingTop: Platform.OS === 'ios' ? 50 : 0, backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
         {['TYT', 'AYT'].map((t) => (
           <TouchableOpacity
             key={t}
